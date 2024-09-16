@@ -198,6 +198,7 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
             return View(student);
+
         }
 
         [HttpPost]
@@ -221,6 +222,7 @@ namespace ContosoUniversity.Controllers
 
 
             return RedirectToAction(nameof(Index));
+
 
         }
 
@@ -257,7 +259,7 @@ namespace ContosoUniversity.Controllers
 
             //Painful very painful
 
-
+            //
 
             //Merge is even MORE painful, fun
 
