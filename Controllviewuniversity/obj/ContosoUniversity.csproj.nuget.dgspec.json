@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\opilane\\Downloads\\ContosoUniversity-master\\ContosoUniversity-master\\Controllviewuniversity\\ContosoUniversity.csproj": {}
+    "C:\\Users\\opilane\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\opilane\\Downloads\\ContosoUniversity-master\\ContosoUniversity-master\\Controllviewuniversity\\ContosoUniversity.csproj": {
+    "C:\\Users\\opilane\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\opilane\\Downloads\\ContosoUniversity-master\\ContosoUniversity-master\\Controllviewuniversity\\ContosoUniversity.csproj",
+        "projectUniqueName": "C:\\Users\\opilane\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj",
         "projectName": "ContosoUniversity",
-        "projectPath": "C:\\Users\\opilane\\Downloads\\ContosoUniversity-master\\ContosoUniversity-master\\Controllviewuniversity\\ContosoUniversity.csproj",
+        "projectPath": "C:\\Users\\opilane\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj",
         "packagesPath": "C:\\Users\\opilane\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\opilane\\Downloads\\ContosoUniversity-master\\ContosoUniversity-master\\Controllviewuniversity\\obj\\",
+        "outputPath": "C:\\Users\\opilane\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

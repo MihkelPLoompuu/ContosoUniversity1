@@ -101,6 +101,7 @@ namespace ContosoUniversity.Controllers
             }
 
             return View(instructor);
+
         }
 
         [HttpPost, ActionName("Delete")]
@@ -127,6 +128,7 @@ namespace ContosoUniversity.Controllers
             }
 
             return View(student);
+
 
         }
 
