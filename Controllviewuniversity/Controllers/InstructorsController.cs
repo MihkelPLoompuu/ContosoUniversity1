@@ -165,6 +165,32 @@ namespace ContosoUniversity.Controllers
 
 
         }
+        public async Task<IActionResult> Clone(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var instructor = await _context.Instructors.AsNoTracking().FirstOrDefaultAsync(m => m.ID == id);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+
+
+            var clonedInstructor = new Instructor
+            {
+                FirstMidName = instructor.FirstMidName,
+                LastName = instructor.LastName,
+                HireDate = instructor.HireDate,
+            };
+
+            _context.Instructors.Add(clonedInstructor);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
+        }
 
         private void PopulateAssignedCourseData(Instructor instructor)
         {
