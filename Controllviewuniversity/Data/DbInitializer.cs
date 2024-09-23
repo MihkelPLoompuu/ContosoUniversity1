@@ -105,6 +105,38 @@ namespace ContosoUniversity.Data
                 new Instructor {LastName = "Liivalahe",FirstMidName = "Tore",HireDate = DateTime.Parse("2011-09-01"),City="Keila",Age = 22 ,WorkYears = 12},
                 new Instructor {LastName = "Laanemets",FirstMidName = "Mari",HireDate = DateTime.Parse("2011-09-01"),City="Pärnu",Age = 70 ,WorkYears = 40},
             };
+            context.Instructors.AddRange(instructors);
+            context.SaveChanges();
+
+            if (context.Departments.Any()) { return; }
+            var departments = new Department[]
+            {
+                new Department
+                {
+                    Name ="InfoTechnology",
+                    Budget = 0,
+                    StartDate = DateTime.Parse("2024-09-01"),
+                    DepartmentOwner = "Mari Liivamets",
+                    InstructorID = 2,
+                },
+                new Department
+                {
+                    Name ="Swamp defence 101",
+                    Budget = 0,
+                    StartDate = DateTime.Parse("2024-09-01"),
+                    DepartmentOwner = "Illar Aeglane",
+                    InstructorID = 1,
+                },
+                new Department
+                {
+                    Name ="CryptoBro 101",
+                    Budget = 0,
+                    StartDate = DateTime.Parse("2024-12-01"),
+                    DepartmentOwner = "Mahe Mees"
+                }
+            };
+            context.Departments.AddRange(departments);
+            context.SaveChanges();
             /* //objekyi õpilastega, mis lisatakse siis, kui õpilasi sisestatud ei ole
              var students = new Student[]
              {
