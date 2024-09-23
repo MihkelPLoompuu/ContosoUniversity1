@@ -101,8 +101,9 @@ namespace ContosoUniversity.Data
             if (context.Instructors.Any()) { return; }
             var instructors = new Instructor[] 
             {
-                new Instructor {LastName = "Illa",FirstMidName = "Lahe",HireDate = DateTime.Parse("2003-09-01"),Mood = Mood.Sad,VocationCredential = "Proffessional Orge",WorkYears = 20},
-                new Instructor {LastName = "Liivalahe",FirstMidName = "Tore",HireDate = DateTime.Parse("2003-09-01"),Mood = Mood.Sad,VocationCredential = "Proffessional Orge",WorkYears = 20},
+                new Instructor {LastName = "Illa",FirstMidName = "Lahe",HireDate = DateTime.Parse("2003-09-01"),City="Tallinn",Age = 46,WorkYears = 20},
+                new Instructor {LastName = "Liivalahe",FirstMidName = "Tore",HireDate = DateTime.Parse("2011-09-01"),City="Keila",Age = 22 ,WorkYears = 12},
+                new Instructor {LastName = "Laanemets",FirstMidName = "Mari",HireDate = DateTime.Parse("2011-09-01"),City="Pärnu",Age = 70 ,WorkYears = 40},
             };
             /* //objekyi õpilastega, mis lisatakse siis, kui õpilasi sisestatud ei ole
              var students = new Student[]

@@ -33,14 +33,8 @@ namespace ContosoUniversity.Models
 
         //igaühel on oma kolm unikaalset propertyt
 
-        public Mood? Mood { get; set; } //õpetaja tuju
-        [Display(Name = "Kutsetunnistuse #:")]
-        public string? VocationCredential { get; set; } //kutsekoja kutseregistri tunnistuse väljastuse number
+        public string? City { get; set; } //õpetaja linn
+        public int? Age { get; set; } //õpetaja vanus
         public int? WorkYears { get; set; } //tööaastaid selles asutuses
-    }
-
-    public enum Mood
-    {
-        Happy, Sad, Anxious, Puzzled, HighAF, Darklord
     }
 }
