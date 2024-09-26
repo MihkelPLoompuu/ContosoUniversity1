@@ -33,8 +33,8 @@ namespace ContosoUniversity.Models
 
         //igaühel on oma kolm unikaalset propertyt
 
-        public string? City { get; set; } //õpetaja linn
-        public int? Age { get; set; } //õpetaja vanus
+        public string? VocationCredential { get; set; } //õpetaja linn
+        public int? Mood { get; set; } //õpetaja vanus
         public int? WorkYears { get; set; } //tööaastaid selles asutuses
     }
 }

@@ -101,15 +101,18 @@ namespace ContosoUniversity.Data
             if (context.Instructors.Any()) { return; }
             var instructors = new Instructor[] 
             {
-                new Instructor {LastName = "Illa",FirstMidName = "Lahe",HireDate = DateTime.Parse("2003-09-01"),City="Tallinn",Age = 46,WorkYears = 20},
-                new Instructor {LastName = "Liivalahe",FirstMidName = "Tore",HireDate = DateTime.Parse("2011-09-01"),City="Keila",Age = 22 ,WorkYears = 12},
-                new Instructor {LastName = "Laanemets",FirstMidName = "Mari",HireDate = DateTime.Parse("2011-09-01"),City="Pärnu",Age = 70 ,WorkYears = 40},
+                new Instructor {LastName = "Illa",FirstMidName = "Lahe",HireDate = DateTime.Parse("2003-09-01"),VocationCredential="Tallinn",Mood = 46,WorkYears = 20},
+                new Instructor {LastName = "Liivalahe",FirstMidName = "Tore",HireDate = DateTime.Parse("2011-09-01"),VocationCredential="Keila",Mood = 22 ,WorkYears = 12},
+                new Instructor {LastName = "Laanemets",FirstMidName = "Mari",HireDate = DateTime.Parse("2011-09-01"),VocationCredential="Pärnu",Mood = 70 ,WorkYears = 40},
             };
             context.Instructors.AddRange(instructors);
             context.SaveChanges();
 
-            if (context.Departments.Any()) { return; }
-            var departments = new Department[]
+            if (context.Departments.Any()) 
+            { 
+                return;
+            }
+            var department = new Department[]
             {
                 new Department
                 {
@@ -135,7 +138,7 @@ namespace ContosoUniversity.Data
                     DepartmentOwner = "Mahe Mees"
                 }
             };
-            context.Departments.AddRange(departments);
+            context.Departments.AddRange(department);
             context.SaveChanges();
             /* //objekyi õpilastega, mis lisatakse siis, kui õpilasi sisestatud ei ole
              var students = new Student[]
