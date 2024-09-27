@@ -14,33 +14,31 @@ namespace ContosoUniversity.Controllers
         {
             _context = context;
         }
-
         public async Task<IActionResult> Index()
         {
             var schoolContext = _context.Departments.Include(d => d.Administrator);
             return View(await schoolContext.ToListAsync());
         }
-
-        public async Task<IActionResult> Details(int? id) 
+        public async Task<IActionResult> Details(int? id)
         {
-            if (id == null) 
+            if (id == null)
             {
                 return NotFound();
             }
-            string query = "SELECT * FROM Departments WHERE DepartmentID = {0}";
+            string query = "SELECT * FROM Department WHERE DepartmentID = (0)";
             var department = await _context.Departments
                 .FromSqlRaw(query, id)
                 .Include(d => d.Administrator)
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
-            if (department == null) 
-            { 
-                return NotFound(); 
+            if (department == null)
+            {
+                return NotFound();
             }
             return View(department);
         }
         [HttpGet]
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName");
             return View();
@@ -48,16 +46,18 @@ namespace ContosoUniversity.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Budget,StartDate,DepartmentOwner,EndDate,RowVersion,InstructorID")] Department department) 
+        public async Task<IActionResult> Create([Bind("Name, Budget, StartDate, RowVersion, InstructorID, DepartmentOwner")] Department Department)
         {
-            if (ModelState.IsValid) 
+
+            if (ModelState.IsValid)
             {
-                _context.Add(department);
+                _context.Add(Department);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", department.InstructorID);
-            return View(department);
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName", Department.InstructorID);
+
+            return View(Department);
         }
     }
 }
