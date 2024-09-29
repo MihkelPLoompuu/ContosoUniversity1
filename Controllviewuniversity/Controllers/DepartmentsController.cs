@@ -118,5 +118,6 @@ namespace ContosoUniversity.Controllers
             }
             return View(modifiedDepartment);
         }
+       
     }
 }
