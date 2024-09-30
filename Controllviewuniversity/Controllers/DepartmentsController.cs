@@ -148,7 +148,7 @@ namespace ContosoUniversity.Controllers
                      .FirstOrDefaultAsync(m => m.DepartmentID == id);
                 if (actionType == "Make")
                 {
-                    _context.Add(departments);
+                    _context.Add(department);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
@@ -159,7 +159,6 @@ namespace ContosoUniversity.Controllers
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
-                return View(department);
             }
             ViewData["DepartmentID"] = new SelectList(_context.Departments, "ID", "FullName", department.InstructorID);
             return View(department);

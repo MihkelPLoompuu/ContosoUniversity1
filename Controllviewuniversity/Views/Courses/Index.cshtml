@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ContosoUniversity.Models.Course>
+@{
+    ViewData["Title"] = "Course";
+}
+<h1>Course</h1>
+<p>
+    <a asp-action="Create">Make a new Course</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.CourseID)</th>
+            <th> @Html.DisplayNameFor(model => model.Title)</th>
+            <th> @Html.DisplayNameFor(model => model.Credits)</th>
+            <th> @Html.DisplayNameFor(model => model.Enrollments)</th>
+            <th>Available action:</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var department in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => department.CourseID)</td>
+                <td> @Html.DisplayFor(modelItem => department.Title)</td>
+                <td> @Html.DisplayFor(modelItem => department.Credits)</td>
+                <td> @Html.DisplayFor(modelItem => department.Enrollments)</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@department.CourseID" class="btn btn-dark">Details</a>
+                    <a asp-action="Edit" asp-route-id="@department.CourseID" class="btn btn-dark">Edit</a>
+                    <a asp-action="Clone" asp-route-id="@department.CourseID" class="btn btn-dark">BaseOn</a>
+                    <a asp-action="Delete" asp-route-id="@department.CourseID" class="btn btn-dark">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

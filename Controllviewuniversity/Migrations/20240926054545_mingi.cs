@@ -11,28 +11,14 @@ namespace ContosoUniversity.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "City",
+                name: "VocationCredential",
                 table: "Instructors",
                 newName: "VocationCredential");
 
             migrationBuilder.RenameColumn(
-                name: "Age",
-                table: "Instructors",
-                newName: "Mood");
-        }
-
-        /// <inheritdoc />
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.RenameColumn(
-                name: "VocationCredential",
-                table: "Instructors",
-                newName: "City");
-
-            migrationBuilder.RenameColumn(
                 name: "Mood",
                 table: "Instructors",
-                newName: "Age");
+                newName: "Mood");
         }
     }
 }
