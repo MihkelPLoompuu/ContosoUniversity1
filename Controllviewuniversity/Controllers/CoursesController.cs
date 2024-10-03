@@ -1,4 +1,5 @@
 ﻿using ContosoUniversity.Data;
+using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,6 +59,33 @@ namespace ContosoUniversity.Controllers
             _context.Courses.Remove(Cors);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Clone(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var Cors = await _context.Courses.AsNoTracking().FirstOrDefaultAsync(m => m.CourseID == id);
+            if (Cors == null)
+            {
+                return NotFound();
+            }
+
+
+            var CloneCorses = new Course
+            {
+                CourseID = Cors.CourseID,
+                Title = Cors.Title,
+                Credits = Cors.Credits,
+                Enrollments = Cors.Enrollments, 
+            };
+
+            _context.Courses.Add(CloneCorses);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Details));
+
         }
     }
 }
