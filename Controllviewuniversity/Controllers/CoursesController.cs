@@ -31,5 +31,33 @@ namespace ContosoUniversity.Controllers
 
             return View(corse);
         }
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null) 
+            {
+                return NotFound();
+            }
+
+            var Corse = await _context.Courses.FirstOrDefaultAsync(M => M.CourseID == id); 
+
+            if (Corse == null) 
+            {
+                return NotFound();
+            }
+
+            return View(Corse);
+
+
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var Cors = await _context.Courses.FindAsync(id); 
+            _context.Courses.Remove(Cors);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
