@@ -87,5 +87,23 @@ namespace ContosoUniversity.Controllers
             return RedirectToAction(nameof(Details));
 
         }
+        [HttpGet]
+        public IActionResult CreateEdit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateEdit(Course Cores) 
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(Cores);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            return View(Cores);
+        }
     }
 }

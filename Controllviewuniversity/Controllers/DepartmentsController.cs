@@ -90,6 +90,7 @@ namespace ContosoUniversity.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
+            ViewData["InstructorID"] = new SelectList(_context.Instructors, "ID", "FullName");
             if (id == null)
             {
                 return NotFound();
