@@ -18,18 +18,18 @@
     </thead>
 
     <tbody>
-        @foreach (var department in Model)
+        @foreach (var course in Model)
         {
             <tr>
-                <td> @Html.DisplayFor(modelItem => department.CourseID)</td>
-                <td> @Html.DisplayFor(modelItem => department.Title)</td>
-                <td> @Html.DisplayFor(modelItem => department.Credits)</td>
-                <td> @Html.DisplayFor(modelItem => department.Enrollments)</td>
+                <td> @Html.DisplayFor(modelItem => course.CourseID)</td>
+                <td> @Html.DisplayFor(modelItem => course.Title)</td>
+                <td> @Html.DisplayFor(modelItem => course.Credits)</td>
+                <td> @Html.DisplayFor(modelItem => course.Enrollments)</td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@department.CourseID" class="btn btn-dark">Details</a>
-                    <a asp-action="Edit" asp-route-id="@department.CourseID" class="btn btn-dark">Edit</a>
-                    <a asp-action="Clone" asp-route-id="@department.CourseID" class="btn btn-dark">BaseOn</a>
-                    <a asp-action="Delete" asp-route-id="@department.CourseID" class="btn btn-dark">Delete</a>
+                    <a asp-action="Details" asp-route-id="@course.CourseID" class="btn btn-dark">Details</a>
+                    <a asp-action="Edit" asp-route-id="@course.CourseID" class="btn btn-dark">Edit</a>
+                    <a asp-action="Clone" asp-route-id="@course.CourseID" class="btn btn-dark">BaseOn</a>
+                    <a asp-action="Delete" asp-route-id="@course.CourseID" class="btn btn-dark">Delete</a>
                 </td>
             </tr>
         }

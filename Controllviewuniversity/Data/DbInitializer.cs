@@ -32,10 +32,7 @@ namespace ContosoUniversity.Data
         
             context.Students.AddRange(students);
             context.SaveChanges();
-            if (context.Instructors.Any())
-            {
-                return;
-            }
+           
             var instructor = new Student[]
             {
                 new Student { FirstMidName = "Illar", LastName = "Aeglane", EnrollmentDate = DateTime.Parse("2002-04-01") },
@@ -52,10 +49,7 @@ namespace ContosoUniversity.Data
             };
             context.Students.AddRange(students);
             context.SaveChanges();
-            if (context.Courses.Any()) 
-            {
-                return;
-            }
+
             var courses = new Course[]
             {
                  new Course{CourseID=1050,Title="Chemisrty",Credits=3},
@@ -68,10 +62,12 @@ namespace ContosoUniversity.Data
                  new Course{CourseID=9001,Title="Arvutimängue ajalugu",Credits=1 },
                  new Course{CourseID=2341,Title="keemia",Credits=2 },
             };
-            context.Courses.AddRange(courses);
+            foreach (Course course in courses) 
+            {
+                context.Courses.Add(course);
+            }
             context.SaveChanges();
 
-            if (context.Enrollments.Any()) { return; }
             var enrollment = new Enrollment[]
             {
                  new Enrollment{StudentID=1, CourseID=1050, Grade=Grade.A },

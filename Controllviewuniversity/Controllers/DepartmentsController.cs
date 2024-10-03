@@ -148,7 +148,7 @@ namespace ContosoUniversity.Controllers
                      .FirstOrDefaultAsync(m => m.DepartmentID == id);
                 if (actionType == "Make")
                 {
-                    _context.Add(department);
+                    _context.Add(departments);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
