@@ -15,6 +15,21 @@ namespace ContosoUniversity.Controllers
         {
             return View(await _context.Courses.ToListAsync());
         }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var corse = await _context.Courses
+                .FirstOrDefaultAsync(m => m.CourseID == id);
+            if (corse == null)
+            {
+                return NotFound();
+            }
+
+            return View(corse);
+        }
     }
 }
