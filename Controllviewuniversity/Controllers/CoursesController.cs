@@ -40,14 +40,14 @@ namespace ContosoUniversity.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DetailsDelete(int id,string actionType)
         {
-            if(actionType == "Delete")
+            if(actionType == "delete")
             {
                 var course = await _context.Courses.FindAsync(id);
                 _context.Courses.Remove(course);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
         [HttpGet]
         public async Task<IActionResult> CreateEdit(int? id,string actionType, Course Cor)

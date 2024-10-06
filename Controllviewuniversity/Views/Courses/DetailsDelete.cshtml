@@ -1,14 +1,11 @@
 ﻿@model ContosoUniversity.Models.Course
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "DetailsDelete";
 }
-<h1>Details</h1>
+<h1>DetailsDelete</h1>
 <div>
-    <h4>Courses</h4>
-
-    <h3>Are you sure about that?</h3>
     <div>
-        <h4>Student</h4>
+        <h4>Course</h4>
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
@@ -35,6 +32,7 @@
 
         <form asp-action="Delete">
             <input type="hidden" asp-for="CourseID" />
-            <input type="submit" name="actionType"value="Delete" class="btn btn-danger" /> | <a asp-action="Index">Back to List</a>
+            <input type="submit" name="actionType"value="delete" class="btn btn-danger" /> | <a asp-action="Index">Back to List</a>
         </form>
     </div>
+</div>
