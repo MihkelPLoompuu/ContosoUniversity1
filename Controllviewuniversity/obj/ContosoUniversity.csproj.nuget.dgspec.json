@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\opilane\\source\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj": {}
+    "C:\\Users\\mihke\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj": {}
   },
   "projects": {
-    "C:\\Users\\opilane\\source\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj": {
+    "C:\\Users\\mihke\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\opilane\\source\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj",
+        "projectUniqueName": "C:\\Users\\mihke\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj",
         "projectName": "ContosoUniversity",
-        "projectPath": "C:\\Users\\opilane\\source\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj",
-        "packagesPath": "C:\\Users\\opilane\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\opilane\\source\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\obj\\",
+        "projectPath": "C:\\Users\\mihke\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\ContosoUniversity.csproj",
+        "packagesPath": "C:\\Users\\mihke\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mihke\\Source\\Repos\\MihkelPLoompuu\\ContosoUniversity1\\Controllviewuniversity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\opilane\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mihke\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

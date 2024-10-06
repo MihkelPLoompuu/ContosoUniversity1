@@ -1,6 +1,7 @@
 ﻿using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContosoUniversity.Controllers
@@ -16,94 +17,77 @@ namespace ContosoUniversity.Controllers
         {
             return View(await _context.Courses.ToListAsync());
         }
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var corse = await _context.Courses
-                .FirstOrDefaultAsync(m => m.CourseID == id);
-            if (corse == null)
-            {
-                return NotFound();
-            }
-
-            return View(corse);
-        }
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> DetailsDelete(int? id)
         {
             if (id == null) 
             {
                 return NotFound();
             }
 
-            var Corse = await _context.Courses.FirstOrDefaultAsync(M => M.CourseID == id); 
+            var course = await _context.Courses.FirstOrDefaultAsync(M => M.CourseID == id); 
 
-            if (Corse == null) 
+            if (course == null) 
             {
                 return NotFound();
             }
 
-            return View(Corse);
+            return View(course);
 
 
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DetailsDelete(int id,string actionType)
         {
-            var Cors = await _context.Courses.FindAsync(id); 
-            _context.Courses.Remove(Cors);
-            await _context.SaveChangesAsync();
+            if(actionType == "Delete")
+            {
+                var course = await _context.Courses.FindAsync(id);
+                _context.Courses.Remove(course);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Clone(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var Cors = await _context.Courses.AsNoTracking().FirstOrDefaultAsync(m => m.CourseID == id);
-            if (Cors == null)
-            {
-                return NotFound();
-            }
-
-
-            var CloneCorses = new Course
-            {
-                CourseID = Cors.CourseID,
-                Title = Cors.Title,
-                Credits = Cors.Credits,
-                Enrollments = Cors.Enrollments, 
-            };
-
-            _context.Courses.Add(CloneCorses);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Details));
-
-        }
         [HttpGet]
-        public IActionResult CreateEdit()
+        public async Task<IActionResult> CreateEdit(int? id,string actionType, Course Cor)
         {
+            if (actionType != "Create") 
+            {
+                var CourseEd = await _context.Courses
+                    .FirstOrDefaultAsync(m => m.CourseID == id);
+                if (CourseEd == null)
+                {
+                    return NotFound();
+                }
+                return View(CourseEd);
+            }
+           
+            if (actionType == "Create") 
+            {
+                return View();
+            }
             return View();
         }
-
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateEdit(Course Cores) 
+        public async Task<IActionResult> CreateEdit(int? id, [Bind("CourseID,Title,Credits")] Course course, string actionType)
         {
-            if (ModelState.IsValid)
+            if (actionType == "Create")
             {
-                _context.Add(Cores);
+                _context.Add(course);
+                var CourseId = _context.Courses.OrderByDescending(m => m.CourseID).First();
+                course.CourseID = CourseId.CourseID + 1;
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(Cores);
+            else if (actionType == "Edit")
+            {
+                    _context.Update(course);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+            }
+            return View(course);
         }
     }
 }
