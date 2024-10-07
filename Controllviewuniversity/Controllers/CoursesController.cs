@@ -17,42 +17,11 @@ namespace ContosoUniversity.Controllers
         {
             return View(await _context.Courses.ToListAsync());
         }
-        public async Task<IActionResult> DetailsDelete(int? id)
-        {
-            if (id == null) 
-            {
-                return NotFound();
-            }
 
-            var course = await _context.Courses.FirstOrDefaultAsync(M => M.CourseID == id); 
-
-            if (course == null) 
-            {
-                return NotFound();
-            }
-
-            return View(course);
-
-
-        }
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DetailsDelete(int id,string actionType)
-        {
-            if(actionType == "delete")
-            {
-                var course = await _context.Courses.FindAsync(id);
-                _context.Courses.Remove(course);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return RedirectToAction("Index");
-        }
         [HttpGet]
-        public async Task<IActionResult> CreateEdit(int? id,string actionType, Course Cor)
+        public async Task<IActionResult> CreateEdit(int? id, string actionType, Course Cor)
         {
-            if (actionType != "Create") 
+            if (actionType == "Edit")
             {
                 var CourseEd = await _context.Courses
                     .FirstOrDefaultAsync(m => m.CourseID == id);
@@ -62,8 +31,8 @@ namespace ContosoUniversity.Controllers
                 }
                 return View(CourseEd);
             }
-           
-            if (actionType == "Create") 
+
+            if (actionType == "Create")
             {
                 return View();
             }
@@ -71,17 +40,17 @@ namespace ContosoUniversity.Controllers
         }
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateEdit(int? id, [Bind("CourseID,Title,Credits")] Course course, string actionType)
+        public async Task<IActionResult> CreateEdit([Bind("CourseID,Title,Credits")] Course course, string actionType)
         {
             if (actionType == "Create")
             {
                 _context.Add(course);
                 var CourseId = _context.Courses.OrderByDescending(m => m.CourseID).First();
-                course.CourseID = CourseId.CourseID + 1;
+                course.CourseID = course.CourseID + 1;
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            else if (actionType == "Edit")
+            if (actionType == "Edit")
             {
                     _context.Update(course);
                     await _context.SaveChangesAsync();
