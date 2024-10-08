@@ -43,20 +43,38 @@ namespace ContosoUniversity.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            if (actionType == "Clone")
+            {
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                var CourseED = await _context.Courses
+                    .FirstOrDefaultAsync(M => M.CourseID == id);
+                if (CourseED == null)
+                {
+                    return NotFound();
+                }
+                return View(CourseED);
+            }
             return RedirectToAction("Index");
         }
         [HttpGet]
         public async Task<IActionResult> CreateEdit(int? id, string actionType, Course Cor)
         {
-            if (actionType == "Edit")
+            if (actionType != "Create")
             {
-                var CourseEd = await _context.Courses
-                    .FirstOrDefaultAsync(m => m.CourseID == id);
-                if (CourseEd == null)
+                if (id == null)
                 {
                     return NotFound();
                 }
-                return View(CourseEd);
+                var CourseED = await _context.Courses
+                    .FirstOrDefaultAsync(m => m.CourseID == id);
+                if (CourseED == null)
+                {
+                    return NotFound();
+                }
+                return View(CourseED);
             }
 
             if (actionType == "Create")
@@ -67,19 +85,23 @@ namespace ContosoUniversity.Controllers
         }
         [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateEdit([Bind("CourseID,Title,Credits")] Course course, string actionType)
+        public async Task<IActionResult> CreateEdit(int? id, [Bind("CourseID,Title,Credits")] Course course, string actionType)
         {
             if (actionType == "Create")
             {
                 _context.Add(course);
                 var CourseId = _context.Courses.OrderByDescending(m => m.CourseID).First();
-                course.CourseID = course.CourseID + 1;
+                course.CourseID = CourseId.CourseID + 1;
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             if (actionType == "Edit")
             {
-                    _context.Update(course);
+                    if (course.CourseID == null)
+                    {
+                        return BadRequest();
+                    }
+                    _context.Courses.Update(course);
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
             }
