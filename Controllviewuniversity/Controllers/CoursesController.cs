@@ -60,51 +60,43 @@ namespace ContosoUniversity.Controllers
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public async Task<IActionResult> CreateEdit(int? id, string actionType, Course Cor)
+        public async Task<IActionResult> CreateEdit(int? id)
         {
-            if (actionType != "Create")
+            if (id == null)
             {
-                if (id == null)
-                {
-                    return NotFound();
-                }
-                var CourseED = await _context.Courses
-                    .FirstOrDefaultAsync(m => m.CourseID == id);
-                if (CourseED == null)
-                {
-                    return NotFound();
-                }
-                return View(CourseED);
-            }
-
-            if (actionType == "Create")
-            {
+                ViewBag.CreateEdit = "CreateEdit";
+                ViewBag.CreateEditCE = "Make a new Course";
                 return View();
             }
-            return View();
-        }
-        [HttpPost, ActionName("Create")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateEdit(int? id, [Bind("CourseID,Title,Credits")] Course course, string actionType)
-        {
-            if (actionType == "Create")
+            var course = await _context.Courses.FirstOrDefaultAsync(M => M.CourseID == id);
+            if (course == null)
             {
-                _context.Add(course);
-                var CourseId = _context.Courses.OrderByDescending(m => m.CourseID).First();
-                course.CourseID = CourseId.CourseID + 1;
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return NotFound();
             }
-            if (actionType == "Edit")
-            {
-                    if (course.CourseID == null)
-                    {
-                        return BadRequest();
-                    }
-                    _context.Courses.Update(course);
+            ViewBag.CreateEdit = "Edit";
+            ViewBag.CreateEditCE = "Edit a Course";
+            return View(course);
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateEdit(Course course)
+        {
+                if (course.CourseID == 0)
+                {
+                    _context.Add(course);
+                    var CourseId = _context.Courses.OrderByDescending(m => m.CourseID).First();
+                    course.CourseID = CourseId.CourseID + 1;
                     await _context.SaveChangesAsync();
                     return RedirectToAction("Index");
-            }
+                }
+                var COURSE = _context.Courses.AsNoTracking().FirstOrDefault(M => M.CourseID == course.CourseID);
+                if (COURSE == null)
+                {
+                    return NotFound();
+                }
+                _context.Update(course);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+
             return View(course);
         }
     }

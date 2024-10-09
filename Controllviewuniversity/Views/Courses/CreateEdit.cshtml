@@ -1,37 +1,35 @@
 ﻿@model ContosoUniversity.Models.Course
 
 @{
-    ViewData["Title"] = "CreateEdit";
+    ViewData["CreateEdit"] = ViewBag.CreateEdit;
 }
-
-<h1>Create</h1>
-
-<h4>Courses</h4>
-
+<h2>@ViewBag.CreateEditCD</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="CreateEdit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @{
+                if (ViewBag.CreateEdit == "Edit")
+                {
+                    <input type="hidden" asp-for="CourseID" value="@Model.CourseID" />
+                }
+            }
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
-                <span asp-asp-validation-for="Title" class="text-danger"></span>
+                <span asp-validation-for="Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Credits" class="control-label"></label>
                 <input asp-for="Credits" class="form-control" />
-                <span asp-asp-validation-for="Credits" class="text-danger"></span>
+                <span asp-validation-for="Credits" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" name="actionType" value="Create" class="btn btn-primary" />
-                <input type="submit" name="actionType" value="Edit" class="btn btn-primary"/>
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+        <a asp-action="Index" class="btn btn-outline-primary">Back</a>
     </div>
-</div>
-
-
-<div>
-    <a asp-action="Index"> Back to the List</a>
 </div>
