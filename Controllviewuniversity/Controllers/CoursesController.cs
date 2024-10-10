@@ -47,7 +47,7 @@ namespace ContosoUniversity.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> CreateEdit(int? id, string actionType, Course Cor)
-        {
+        {          
             return View();
         }
         [HttpPost, ActionName("Create")]
