@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ContosoUniversity.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20241009161628_CE")]
+    [Migration("20241010075351_CE")]
     partial class CE
     {
         /// <inheritdoc />

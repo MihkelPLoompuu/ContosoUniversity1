@@ -554,7 +554,6 @@ C:\Users\opilane\Source\Repos\MihkelPLoompuu\ContosoUniversity1\Controllviewuniv
 C:\Users\opilane\Source\Repos\MihkelPLoompuu\ContosoUniversity1\Controllviewuniversity\obj\Debug\net8.0\ContosoUniversity.pdb
 C:\Users\opilane\Source\Repos\MihkelPLoompuu\ContosoUniversity1\Controllviewuniversity\obj\Debug\net8.0\ContosoUniversity.genruntimeconfig.cache
 C:\Users\opilane\Source\Repos\MihkelPLoompuu\ContosoUniversity1\Controllviewuniversity\obj\Debug\net8.0\ref\ContosoUniversity.dll
-C:\Users\opilane\Source\Repos\MihkelPLoompuu\ContosoUniversity1\Controllviewuniversity\bin\Debug\net8.0\System.Text.Json.dll
 C:\Users\mihke\Source\Repos\MihkelPLoompuu\ContosoUniversity1\Controllviewuniversity\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\mihke\Source\Repos\MihkelPLoompuu\ContosoUniversity1\Controllviewuniversity\bin\Debug\net8.0\appsettings.json
 C:\Users\mihke\Source\Repos\MihkelPLoompuu\ContosoUniversity1\Controllviewuniversity\bin\Debug\net8.0\ContosoUniversity.staticwebassets.runtime.json
