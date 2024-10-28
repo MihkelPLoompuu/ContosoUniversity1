@@ -33,42 +33,64 @@ namespace ContosoUniversity.Controllers
             return View(course);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DetailsDelete(int id, string actionType, Course course)
         {
-            if (actionType == "delete")
+            if (actionType == "Delete")
             {
                 _context.Courses.Remove(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            if (actionType == "Details")
+            {
+                _context.Courses.Add(course);
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("Index");
         }
         [HttpGet]
-        public async Task<IActionResult> CreateEdit(int? id, string actionType, Course Cor)
-        {          
-            return View();
+        public async Task<IActionResult> CreateEdit(int? id, string actionType)
+        {
+            if (id == null && actionType == "Create")
+            {
+                return View(new Course());
+            }
+            else
+            {              
+                var course = await _context.Courses.FindAsync(id);
+                if (course == null)
+                {
+                    return NotFound();
+                }
+                return View(course);
+            }
         }
-        [HttpPost, ActionName("Create")]
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(int? id, [Bind("CourseID,Title,Credits")] Course course, string actionType)
         {
-            if (actionType == "Create")
-            {
-                _context.Add(course);
-                var Courseid = _context.Courses.OrderByDescending(m => m.CourseID).First();
-                course.CourseID = Courseid.CourseID + 1;
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            if (actionType == "Edit")
-            {
-                _context.Courses.Update(course);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+
+                if (actionType == "Create")
+                {
+                    var CourseId = await _context.Courses.MaxAsync(m => (int?)m.CourseID) ?? 0;
+                    course.CourseID = CourseId + 1;
+
+                    _context.Add(course);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                else if (actionType == "Edit" && id != null)
+                {
+
+                        _context.Update(course);
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction("Index");
+                }
             return View(course);
         }
+
     }
 }
