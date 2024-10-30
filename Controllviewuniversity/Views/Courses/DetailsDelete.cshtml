@@ -1,39 +1,50 @@
 ﻿@model ContosoUniversity.Models.Course
+
 @{
-    ViewData["Title"] = "DetailsDelete";
+    string actionType = ViewData["actionType"]?.ToString() ?? "Details";
+    ViewData["Title"] = actionType == "Delete" ? "Delete Course" : "Course Details";
 }
-<h1>DetailsDelete</h1>
+
+<h2>@ViewData["Title"]</h2>
+
 <div>
-    <div>
-        <h4>Course</h4>
-        <hr />
-        <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.CourseID)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CourseID)
-            </dd>
+    <h4>Course</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CourseID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseID)
+        </dd>
 
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Title)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Title)
-            </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
 
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Credits)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Credits)
-            </dd>
-        </dl>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Credits)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Credits)
+        </dd>
+    </dl>
 
-        <form asp-action="Delete">
-            <input type="hidden" asp-for="CourseID" />
-            <input type="submit" name="actionType" value="Clone" class="btn btn-danger" />
-            <input type="submit" name="actionType" value="delete" class="btn btn-danger" /> | <a asp-action="Index">Back to List</a>
-        </form>
-    </div>
+    <form asp-action="DetailsDeleteConfirmed" method="post">
+        <input type="hidden" asp-for="CourseID" />
+        <input type="hidden" name="actionType" value="@actionType" />
+
+        @if (actionType == "Delete")
+        {
+            
+        }
+        else
+        {
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        }
+    </form>
 </div>
