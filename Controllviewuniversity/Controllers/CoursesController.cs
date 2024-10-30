@@ -13,10 +13,7 @@ namespace ContosoUniversity.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Courses.ToListAsync());
-        }
+       
         public async Task<IActionResult> DetailsDelete(int? id, string actionType)
         {
             if (id == null)
